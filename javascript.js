@@ -20,7 +20,14 @@ function createGrid(n) {
 window.onload = () => {
     createGrid(16);
     size.addEventListener("click", () => {
-        let n = prompt("Enter a number between 0 and 100.");
+        let n = 0;
+        while (true){
+            n = prompt("Enter a number between 0 and 100, exclusive.");
+            if (n <= 0 || n >= 100){
+                alert("Your number is out of the range. Please choose type again.")
+            } else break;
+        }
+
         createGrid(n);
     })
 
