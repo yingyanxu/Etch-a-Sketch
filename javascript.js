@@ -1,25 +1,27 @@
-const container = document.querySelector("#container");
 const body = document.querySelector("body");
+const container = document.querySelector("#container");
+const size = document.querySelector("button");
 
 function createGrid(n) {
+    
+    container.textContent = "";
+    container.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
+    container.style.gridTemplateRows = `repeat(${n}, 1fr)`;
 
     for (let i = 0; i < n*n; i++){
         const square = document.createElement("div");
         square.classList.add('grid-square');
-        square.style.width = `${100/n}%`;
-        square.style.height = `${100/n}%`;
         container.appendChild(square);
 
     }
 }
 
-const size = document.createElement("button");
-size.textContent = "Choose Size";
 
-let n = 0;
-size.addEventListener("click", () => {
-    n = prompt("Enter a number between 0 and 100.");
-    createGrid(n);
-})
+window.onload = () => {
+    createGrid(16);
+    size.addEventListener("click", () => {
+        let n = prompt("Enter a number between 0 and 100.");
+        createGrid(n);
+    })
 
-body.insertBefore(size, container);
+}
