@@ -40,6 +40,6 @@ button:active {
 .grid-square {
   border: 1px solid #ccc;
   background-color: white;
-  
+  transition: background-color 0.2s ease;
 } 
 

@@ -11,6 +11,30 @@ function createGrid(n) {
     for (let i = 0; i < n*n; i++){
         const square = document.createElement("div");
         square.classList.add('grid-square');
+        square.dataset.hoverCount = 0;
+
+        square.addEventListener("mouseenter", () => {
+            let hoverCount = parseInt(square.dataset.hoverCount);
+
+            if (hoverCount === 0){
+                // first hover: randomize color
+                const r = Math.floor(Math.random()*256);
+                const g = Math.floor(Math.random()*256);
+                const b = Math.floor(Math.random()*256);
+
+                square.dataset.rgb = `${r},${g},${b}`;
+
+            }
+            if (hoverCount < 10){
+                hoverCount ++;
+                square.dataset.hoverCount = hoverCount;
+                
+                const opacity = hoverCount /10;
+                const [r, g, b] = square.dataset.rgb.split(",").map(Number);
+                square.style.backgroundColor = `rgba(${r},${g},${b},${opacity})`;
+            }
+        });
+
         container.appendChild(square);
 
     }
